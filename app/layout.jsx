@@ -6,6 +6,15 @@ export const metadata = {
     title: 'Spawnback | Sovereign AI Backend as a Service',
     description: 'Beyond cloud dependency. A scalable, vendor-agnostic foundation for intelligent AI applications—from global edge to private on-premises cloud.',
     keywords: ['Sovereign AI', 'Global Backend as a Service', 'Scalable AI Infrastructure', 'Vector Database', 'Python Microservices', 'BaaS'],
+    icons: {
+        icon: [
+            { url: '/favicon.svg', type: 'image/svg+xml' },
+            { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+        ],
+        shortcut: '/favicon.ico',
+        apple: '/apple-touch-icon.png',
+    },
+    manifest: '/site.webmanifest',
     openGraph: {
         title: 'Spawnback | Sovereign AI Infrastructure',
         description: 'The scalable global strategy for independent AI applications.',
