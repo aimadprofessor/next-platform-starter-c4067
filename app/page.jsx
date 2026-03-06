@@ -27,13 +27,15 @@ export default function Page() {
                 {/* Centered Logo */}
                 <div className="relative z-10 flex flex-col items-center gap-6 px-6 text-center">
                     <Image
-                        src={netlifyLogo}
+                        src="/images/logo.png"
                         alt="Spawnback logo"
-                        className="h-20 w-auto sm:h-28 md:h-36 drop-shadow-2xl"
+                        width={2100} // Increased for resolution
+                        height={2100} // Increased for resolution
+                        className="h-60 w-auto sm:h-[336px] md:h-[432px] drop-shadow-2xl"
                         priority
                     />
                     <p className="text-lg sm:text-xl md:text-2xl font-light tracking-wide text-white/90 max-w-xl">
-                        Something great is coming
+                        The Ultimate Scalable Global Backend as a Service
                     </p>
                 </div>
             </section>
