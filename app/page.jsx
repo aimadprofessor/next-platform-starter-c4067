@@ -1,63 +1,56 @@
-import Link from 'next/link';
-import { Card } from 'components/card';
-import { ContextAlert } from 'components/context-alert';
-import { Markdown } from 'components/markdown';
-import { RandomQuote } from 'components/random-quote';
-import { getNetlifyContext } from 'utils';
-
-const contextExplainer = `
-The card below is rendered on the server based on the value of \`process.env.CONTEXT\` 
-([docs](https://docs.netlify.com/configure-builds/environment-variables/#build-metadata)):
-`;
-
-const preDynamicContentExplainer = `
-The card content below is fetched by the client-side from \`/quotes/random\` (see file \`app/quotes/random/route.js\`) with a different quote shown on each page load:
-`;
-
-const ctx = getNetlifyContext();
+import Image from 'next/image';
+import { Header } from 'components/header';
+import netlifyLogo from 'public/netlify-logo.svg';
 
 export default function Page() {
     return (
-        <div className="flex flex-col gap-12 sm:gap-16">
-            <section>
-                <ContextAlert className="mb-6" />
-                <h1 className="mb-4">Netlify Platform Starter – Next.js</h1>
-                <p className="mb-6 text-lg">
-                    Deploy the latest version of Next.js — including Turbopack, React Compiler, and the new caching APIs
-                    — on Netlify in seconds. No configuration or custom adapter required.
-                </p>
-                <Link href="https://docs.netlify.com/frameworks/next-js/overview/" className="btn btn-lg sm:min-w-64">
-                    Read the Docs
-                </Link>
-            </section>
-            {!!ctx && (
-                <section className="flex flex-col gap-4">
-                    <Markdown content={contextExplainer} />
-                    <RuntimeContextCard />
-                </section>
-            )}
-            <section className="flex flex-col gap-4">
-                <Markdown content={preDynamicContentExplainer} />
-                <RandomQuote />
-            </section>
-        </div>
-    );
-}
+        <>
+            {/* Hero Section with Video Background */}
+            <section className="relative flex items-center justify-center min-h-screen overflow-hidden">
+                {/* Video Background */}
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 h-full w-full object-cover"
+                >
+                    <source src="/video/background.mp4" type="video/mp4" />
+                </video>
 
-function RuntimeContextCard() {
-    const title = `Netlify Context: running in ${ctx} mode.`;
-    if (ctx === 'dev') {
-        return (
-            <Card title={title}>
-                <p>Next.js will rebuild any page you navigate to, including static pages.</p>
-            </Card>
-        );
-    } else {
-        const now = new Date().toISOString();
-        return (
-            <Card title={title}>
-                <p>This page was statically-generated at build time ({now}).</p>
-            </Card>
-        );
-    }
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-black/50" />
+
+                {/* Header */}
+                <Header />
+
+                {/* Centered Logo */}
+                <div className="relative z-10 flex flex-col items-center gap-6 px-6 text-center">
+                    <Image
+                        src={netlifyLogo}
+                        alt="Spawnback logo"
+                        className="h-20 w-auto sm:h-28 md:h-36 drop-shadow-2xl"
+                        priority
+                    />
+                    <p className="text-lg sm:text-xl md:text-2xl font-light tracking-wide text-white/90 max-w-xl">
+                        Something great is coming
+                    </p>
+                </div>
+            </section>
+
+            {/* Info Section */}
+            <section className="bg-neutral-900 px-6 py-20 sm:px-12 sm:py-28">
+                <div className="mx-auto max-w-3xl text-center">
+                    <h2 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
+                        About Spawnback
+                    </h2>
+                    <p className="text-lg leading-relaxed text-neutral-300">
+                        We are building something exciting. Stay tuned for updates as we prepare to
+                        launch. Our team is working hard to bring you an experience that will
+                        redefine what you expect.
+                    </p>
+                </div>
+            </section>
+        </>
+    );
 }
